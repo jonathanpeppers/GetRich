@@ -3,6 +3,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using System.Net.Http;
+using System.Text.RegularExpressions;
+using Xamarin.Forms;
 
 namespace GetRich
 {
@@ -10,6 +12,7 @@ namespace GetRich
     {
         private const string Url = "http://thefluffingtonpost.com/rss";
         private readonly HttpClient _httpClient = new HttpClient();
+        private readonly Regex _regex = new Regex("src=\"([^\"]+)\"");
 
         public async Task<Picture[]> GetPictures()
         {
@@ -22,11 +25,13 @@ namespace GetRich
 
                 var query = from i in doc.Descendants("item")
                             let title = i.Descendants("title").First()
-                            let image = i.Descendants("img").First()
+                            let image = i.Descendants("description").First()
+                            let match = _regex.Match(image.Value)
+                            where match.Success
                             select new Picture
                             {
                                 Title = title.Value,
-                                Url = image.Value,
+                                Image = ImageSource.FromUri(new Uri(match.Groups[1].Value)),
                             };
                 return query.ToArray();
             }

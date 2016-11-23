@@ -10,8 +10,13 @@ namespace GetRich
         {
             BindingContext = _viewModel;
             InitializeComponent();
+        }
 
-            _viewModel.Load();
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            await _viewModel.Load();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using Xamarin.Forms;
 
 namespace GetRich
 {
@@ -10,7 +11,7 @@ namespace GetRich
             set;
         }
 
-        public string Url
+        public ImageSource Image
         {
             get;
             set;

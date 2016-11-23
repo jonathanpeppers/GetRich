@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ContentPage 
   xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:GetRich" x:Class="GetRich.GetRichPage">
-  <ListView ItemsSource="{Binding Pictures}">
+  <ListView RowHeight="320" ItemsSource="{Binding Pictures}" SeparatorVisibility="None">
     <ListView.ItemTemplate>
       <DataTemplate>
-        <ViewCell Height="320">
-            <Image Source="{Binding Url}" />
+        <ViewCell>
+										<Grid>
+											<Image Source="{Binding Image}" Aspect="AspectFill" />
+											<Label Margin="5" Text="{Binding Title}" VerticalOptions="End" TextColor="White" />
+										</Grid>
         </ViewCell>
       </DataTemplate>
     </ListView.ItemTemplate>
