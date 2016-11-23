@@ -8,7 +8,7 @@ namespace GetRich
         {
             InitializeComponent();
 
-            MainPage = new GetRichPage();
+            MainPage = new NavigationPage(new GetRichPage());
         }
 
         protected override void OnStart()

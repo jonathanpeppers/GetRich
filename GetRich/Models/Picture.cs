@@ -11,7 +11,13 @@ namespace GetRich
             set;
         }
 
-        public ImageSource Image
+        public string Link
+        {
+            get;
+            set;
+        }
+
+        public string Image
         {
             get;
             set;

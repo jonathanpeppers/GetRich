@@ -25,13 +25,15 @@ namespace GetRich
 
                 var query = from i in doc.Descendants("item")
                             let title = i.Descendants("title").First()
+                            let link = i.Descendants("link").First()
                             let image = i.Descendants("description").First()
                             let match = _regex.Match(image.Value)
                             where match.Success
                             select new Picture
                             {
                                 Title = title.Value,
-                                Image = ImageSource.FromUri(new Uri(match.Groups[1].Value)),
+                                Link = link.Value,
+                                Image = match.Groups[1].Value,
                             };
                 return query.ToArray();
             }

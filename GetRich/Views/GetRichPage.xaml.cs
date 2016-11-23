@@ -18,5 +18,15 @@ namespace GetRich
 
             await _viewModel.Load();
         }
+
+        private async void OnItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            var picture = (Picture)e.Item;
+            var page = new ArticlePage
+            {
+                BindingContext = picture,
+            };
+            await Navigation.PushAsync(page);
+        }
     }
 }
